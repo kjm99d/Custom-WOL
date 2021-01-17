@@ -15,7 +15,7 @@ public class MemberService {
 
     /**
      * 회원 가입
-    */
+     */
     public Long join(Member member) {
         // 같은 이름이 있는 중복 회원 X
         memberRepository.findById(member.getPk())
@@ -28,10 +28,22 @@ public class MemberService {
     }
 
     /**
+     * 로그인
+     *
+     * @param member
+     * @return
+     */
+    public String findById(Member member) {
+        Member m = memberRepository.findById(member.getId(), member.getPassword()).stream().findAny().get();
+        return m.getId();
+    }
+
+    /**
      * 회원 전체 조회
      */
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
+
 
 }

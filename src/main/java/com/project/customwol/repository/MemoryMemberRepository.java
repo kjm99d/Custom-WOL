@@ -13,15 +13,22 @@ public class MemoryMemberRepository implements MemberRepository {
     public Member save(Member member) {
         member.setPk(++sequence);
         store.put(member.getPk(), member);
-/* 디버깅 메세지
-        System.out.println(member.getPk());
-        System.out.println(member.getId());
-        System.out.println(member.getPassword());
-
-        System.out.println(store.size());
-*/
 
         return member;
+    }
+
+    @Override
+    public Optional<Member> findById(String id, String password) {
+        List<Member> members = findAll();
+        for (Member m: members) {
+            String userId = m.getId();
+            String userPw = m.getPassword();
+
+            if (userId.equals(id) && userPw.equals(password))  return Optional.ofNullable(store.get(m.getPk()));
+
+        }
+
+        return Optional.ofNullable(store.get(id));
     }
 
     @Override
