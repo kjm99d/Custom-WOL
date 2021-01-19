@@ -1,4 +1,4 @@
-package com.project.customwol;
+package com.project.customwol.config;
 
 import com.project.customwol.repository.DataInfoRepository;
 import com.project.customwol.repository.MemberRepository;

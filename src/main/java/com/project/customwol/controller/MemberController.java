@@ -37,31 +37,36 @@ public class MemberController {
         return "redirect:/";
     }
 
+    @GetMapping("/loginSuccess")
+    public String loginPageSuccess() {
+        return "members/memberLoginSuccess";
+    }
+
     @GetMapping("/members/login")
     public String loginPage() {
         return "members/memberLogin";
     }
 
     @PostMapping("/members/login")
-    public String login(HttpSession httpSession, Model model,MemberForm form) {
-        System.out.println("LOGIN ID : " + form.getId());
-        System.out.println("LOGIN PW : " + form.getPassword());
+    public String login(HttpSession httpSession, MemberForm form) {
+        System.out.println("LOGIN ID : " + form.getId() + ", LOGIN PW : " + form.getPassword());
 
         Member member = new Member();
         member.setId(form.getId());
         member.setPassword(form.getPassword());
 
+/**
+ // * 로그인 처리관련 세션 처리
         try {
             String s = memberService.findById(member);
             System.out.println("LOGIN Success ");
             httpSession.setAttribute("sess", member.getId());
-            model.addAttribute("status", "true");
         } catch (NoSuchElementException e) {
             System.out.println("LOGIN Failed ");
-            model.addAttribute("status", "false");
         }
+*/
 
-        return "home";
+        return "redirect:/";
     }
 
     @GetMapping("/members")

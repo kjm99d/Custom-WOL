@@ -30,7 +30,7 @@ public class DataInfoController {
 
     // PC 데이터 추가하는 페이지로 이동
     @PostMapping("/data/new")
-    public String create(DataInfo dataInfo) {
+    public String create(HttpSession httpSession, DataInfo dataInfo) {
         // 데이터 체크
         // 동일 MAC Address 검색
         
