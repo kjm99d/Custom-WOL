@@ -1,6 +1,8 @@
 package com.project.customwol.service;
 
+import com.project.customwol.domain.User;
 import com.project.customwol.domain.Wol;
+import com.project.customwol.repository.UserRepository;
 import com.project.customwol.repository.WolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,21 +14,12 @@ public class WolService {
     private WolRepository wolRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private UserRepository userRepository;
 
-    public Wol save(Wol wol){
-        /*
+    public Wol save(String username, Wol wol){
+        User user = userRepository.findByUsername(username);
+        wol.setUser(user);
 
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-        user.setEnabled(true);
-
-
-        Role role = new Role();
-        role.setId(1l); // static value (?)
-        user.getRoles().add(role);
-
-        */
         return wolRepository.save(wol);
     }
 }

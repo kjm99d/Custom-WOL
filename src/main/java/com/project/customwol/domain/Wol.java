@@ -4,8 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Entity
+
 @Data
+@Entity
 public class Wol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,4 +14,8 @@ public class Wol {
 
     private String mac;
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

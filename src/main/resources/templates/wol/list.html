@@ -20,14 +20,14 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th scope="col">#</th>
+        <th scope="col">@</th>
         <th scope="col">First</th>
         <th scope="col">Last</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="wol : ${wols}">
-        <th th:text="${wol.id}">1</th>
+        <th th:text="${wol.user.username}">1</th>
         <td th:text="${wol.mac}">Mark</td>
         <td th:text="${wol.description}">Otto</td>
     </tr>
