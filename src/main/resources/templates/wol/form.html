@@ -17,22 +17,27 @@
 
 <!-- Custom styles for this template -->
 <link href="starter-template.css" th:href="@{/css/starter-template.css}" rel="stylesheet">
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">@</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="wol : ${wols}">
-        <th th:text="${wol.user.username}">username</th>
-        <th><a th:text="${wol.mac}" th:href="@{/wol/form(id=${wol.id})}">mac address</a></th>
-        <th th:text="${wol.description}">description</th>
-    </tr>
-    </tbody>
-</table>
+
+<form th:object="${wol}" th:action="@{/wol/form}" th:method="POST">
+    <input type="hidden" th:field="*{id}"/>
+
+    <div class="form-group">
+        <!-- Hidden Tag Append -->
+        <label for="mac">MAC</label>
+        <input type="text" class="form-control" id="mac"
+               th:field="*{mac}">
+    </div>
+
+    <div class="form-group">
+        <label for="description">MAC Address</label>
+        <textarea class="form-control" id="description" rows="3" th:field="*{description}"></textarea>
+    </div>
+
+    <div class="text-right">
+        <button type="button" class="btn btn-primary">취소</button>
+        <button type="submit" class="btn btn-primary">확인</button>
+    </div>
+</form>
 
 <!-- Optional JavaScript; choose one of the two! -->
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
